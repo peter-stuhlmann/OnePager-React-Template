@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 export default function Navigation(props) {
   const { color, underlineColor } = props;
@@ -9,7 +10,7 @@ export default function Navigation(props) {
     { title: 'one', pathname: '#one' },
     { title: 'two', pathname: '#two' },
     { title: 'three', pathname: '#three' },
-    { title: 'four', pathname: '#four' },
+    { title: 'four', pathname: 'https://google.com' },
   ];
 
   return (
@@ -17,7 +18,22 @@ export default function Navigation(props) {
       <ul>
         {navItems.map((navItem) => (
           <li key={navItem.title}>
-            <HashLink to={navItem.pathname}>{navItem.title}</HashLink>
+            {navItem.pathname.startsWith('#') && (
+              <HashLink to={navItem.pathname}>{navItem.title}</HashLink>
+            )}
+            {navItem.pathname.startsWith('http') && (
+              <a
+                href={navItem.pathname}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {navItem.title}
+              </a>
+            )}
+            {!navItem.pathname.startsWith('http') &&
+              !navItem.pathname.startsWith('#') && (
+                <Link to={navItem.pathname}>{navItem.title}</Link>
+              )}
           </li>
         ))}
       </ul>

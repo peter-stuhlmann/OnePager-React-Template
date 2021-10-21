@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <Fragment>
       <Intro />
-      <Section>
+      <Section id="one">
         <div style={{ backgroundColor: '#f7484e', padding: 0 }}>
           <div
             style={{
@@ -108,7 +108,7 @@ export default function Home() {
           </p>
         </div>
       </Section>
-      <Section>
+      <Section id="two">
         <div style={{ backgroundColor: '#fff', padding: 0 }}>
           <div
             style={{
@@ -147,7 +147,7 @@ export default function Home() {
           />
         </div>
       </Section>
-      <Section>
+      <Section id="three">
         <div style={{ backgroundColor: '#292929', padding: 0 }}>
           <div
             style={{
