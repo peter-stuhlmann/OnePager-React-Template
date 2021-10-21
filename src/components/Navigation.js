@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { HashLink } from 'react-router-hash-link';
 
-export default function Navigation() {
+export default function Navigation(props) {
+  const { color, underlineColor } = props;
+
   const navItems = [
     { title: 'one', pathname: '#one' },
     { title: 'two', pathname: '#two' },
@@ -11,7 +13,7 @@ export default function Navigation() {
   ];
 
   return (
-    <Nav>
+    <Nav color={color} underlineColor={underlineColor}>
       <ul>
         {navItems.map((navItem) => (
           <li key={navItem.title}>
@@ -35,7 +37,7 @@ const Nav = styled.nav`
     li {
       &::before {
         content: '/';
-        color: #f7484e;
+        color: ${(props) => props.color};
         padding: 0 12px 0 9px;
       }
 
@@ -46,7 +48,7 @@ const Nav = styled.nav`
       }
 
       a {
-        color: #f7484e;
+        color: ${(props) => props.color};
         text-decoration: none;
         text-transform: uppercase;
         font-size: 0.875em;
@@ -61,7 +63,7 @@ const Nav = styled.nav`
             left: 0;
             right: 0;
             border-bottom: 3px solid;
-            border-color: #fff;
+            border-color: ${(props) => props.underlineColor};
             bottom: -0.4em;
             border-width: 2px;
             display: block;
