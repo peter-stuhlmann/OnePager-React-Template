@@ -33,6 +33,10 @@ export default function Home() {
             <Navigation color="#000" underlineColor="#fff" />
           </div>
         </div>
+        <MiniImage
+          src="https://image-placeholder.vercel.app/?w=135&h=135"
+          alt="Placeholder"
+        />
         <div>
           <p>
             <b>
@@ -282,5 +286,21 @@ const FooterLink = styled.span`
 
   &:hover {
     color: rgb(247, 72, 78) !important;
+  }
+`;
+
+const MiniImage = styled.img`
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  transform: translate(-50%, -50%);
+  max-width: 135px;
+
+  @media (max-width: 1200px) {
+    max-width: 100px;
+  }
+
+  @media (max-width: 900px) {
+    display: none;
   }
 `;
