@@ -11,7 +11,7 @@ export default function Intro() {
         src="https://image-placeholder.vercel.app/?w=450&h=450"
         alt="Placeholder"
       />
-      <Navigation color="#f7484e" underlineColor="#fff" />
+      <Navigation main color="#f7484e" underlineColor="#fff" />
     </StyledIntro>
   );
 }
