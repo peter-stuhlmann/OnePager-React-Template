@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
 
 import Intro from './Intro';
@@ -8,8 +7,11 @@ import Navigation from './Navigation';
 import SocialMedia from './SocialMedia';
 import SectionImage from './SectionImage';
 import PortfolioImage from './PortfolioImage';
+import Imprint from './Imprint';
 
 export default function Home() {
+  const [imprintOpen, setImprintOpen] = useState(false);
+
   return (
     <Fragment>
       <Intro />
@@ -170,8 +172,6 @@ export default function Home() {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            height: '100vh',
-            padding: '60px',
           }}
         >
           <div>
@@ -190,7 +190,8 @@ export default function Home() {
             </p>
             <SocialMedia />
           </div>
-          <FooterLink to="/imprint">Imprint</FooterLink>
+          <FooterLink onClick={() => setImprintOpen(true)}>Imprint</FooterLink>
+          {imprintOpen && <Imprint setImprintOpen={setImprintOpen} />}
         </div>
       </Section>
       <Outro />
@@ -207,6 +208,10 @@ const Section = styled.section`
     box-sizing: border-box;
     padding: 96px;
 
+    @media (max-width: 900px) {
+      padding: 10px;
+    }
+
     &:first-child {
       width: 50%;
       height: 100vh;
@@ -215,12 +220,23 @@ const Section = styled.section`
       bottom: 0;
       left: 0;
       float: left;
+
+      @media (max-width: 900px) {
+        width: 100%;
+        float: none;
+        position: relative;
+      }
     }
 
     &:last-child {
       width: 50%;
-      height: auto;
+      min-height: 100vh;
       margin-left: 50%;
+
+      @media (max-width: 900px) {
+        width: 100%;
+        margin-left: 0;
+      }
     }
 
     p,
@@ -256,12 +272,13 @@ const Section = styled.section`
   }
 `;
 
-const FooterLink = styled(Link)`
+const FooterLink = styled.span`
   text-decoration: none;
   color: #000 !important;
   font-weight: bold;
   padding: 24px;
   text-transform: uppercase;
+  cursor: pointer;
 
   &:hover {
     color: rgb(247, 72, 78) !important;
