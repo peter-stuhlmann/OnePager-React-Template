@@ -7,10 +7,10 @@ export default function Navigation(props) {
   const { color, underlineColor, main } = props;
 
   const navItems = [
-    { title: 'one', pathname: '#one' },
-    { title: 'two', pathname: '#two' },
-    { title: 'three', pathname: '#three' },
-    { title: 'four', pathname: 'https://google.com' },
+    { title: 'About', pathname: '#about' },
+    { title: 'Work', pathname: '#work' },
+    { title: 'Contact', pathname: '#contact' },
+    { title: 'Shop', pathname: 'https://google.com' },
   ];
 
   const [open, setOpen] = useState(false);
