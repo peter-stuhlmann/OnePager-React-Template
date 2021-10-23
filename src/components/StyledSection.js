@@ -21,6 +21,11 @@ const SectionStyles = styled.section`
       bottom: 0;
       left: 0;
       float: left;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
 
       @media (max-width: 900px) {
         width: 100%;

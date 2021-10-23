@@ -12,16 +12,8 @@ export default function Contact() {
 
   return (
     <StyledSection id="contact">
-      <div style={{ backgroundColor: '#292929', padding: 0 }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            height: '100vh',
-          }}
-        >
+      <div style={{ backgroundColor: '#292929' }}>
+        <div>
           <SectionImage
             src="https://image-placeholder.vercel.app/?w=250&h=120&text=Contact"
             alt="Placeholder"

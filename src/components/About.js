@@ -8,16 +8,8 @@ import Navigation from './Navigation';
 export default function About() {
   return (
     <StyledSection id="about">
-      <div style={{ backgroundColor: '#f7484e', padding: 0 }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            height: '100vh',
-          }}
-        >
+      <div style={{ backgroundColor: '#f7484e' }}>
+        <div>
           <SectionImage
             src="https://image-placeholder.vercel.app/?w=250&h=120&text=About"
             alt="Placeholder"
