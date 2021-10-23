@@ -50,7 +50,7 @@ export default function Portfolio() {
   useEffect(() => {
     const onScroll = () => {
       setInViewPort(
-        ref?.current?.offsetTop <= window.pageYOffset + 250 &&
+        ref?.current?.offsetTop <= window.pageYOffset + 50 &&
           ref?.current?.offsetTop + ref?.current?.offsetHeight >=
             window.pageYOffset
       );

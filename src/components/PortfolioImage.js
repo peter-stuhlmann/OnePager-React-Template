@@ -28,8 +28,12 @@ export default function PortfolioImage(props) {
 
   return (
     <>
-      {open && inViewPort && (
-        <Button to={'#' + id} onClick={() => handleCloseClick()}>
+      {open && (
+        <Button
+          to={'#' + id}
+          onClick={() => handleCloseClick()}
+          inViewPort={inViewPort}
+        >
           <span />
           <span />
           <span />
@@ -134,6 +138,8 @@ const Button = styled(HashLink)`
   transition: 0.2s;
 
   @media (max-width: 1050px) {
+    display: ${(props) => (props.inViewPort ? 'block' : 'none')};
+
     ${(props) =>
       !props.more &&
       `
