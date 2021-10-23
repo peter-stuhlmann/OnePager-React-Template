@@ -67,11 +67,12 @@ function NavItem(props) {
 
 const MobileNav = styled.ul`
   background-color: #fff;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: fixed;
   z-index: 100;
   top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,6 +81,7 @@ const MobileNav = styled.ul`
   text-transform: uppercase;
   font-weight: bold;
   margin: 0;
+  padding: 0;
 
   a {
     padding: 12px;
@@ -91,7 +93,7 @@ const MobileNav = styled.ul`
 const Nav = styled.nav`
   padding: 36px 15px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1050px) {
     display: ${(props) => (props.main ? 'relative' : 'none')};
   }
 
@@ -156,7 +158,7 @@ const Button = styled.a`
   font-size: 11px;
   cursor: pointer;
 
-  @media (min-width: 900px) {
+  @media (min-width: 1050px) {
     display: none;
   }
 

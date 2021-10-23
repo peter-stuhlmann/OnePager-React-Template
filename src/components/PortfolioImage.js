@@ -13,6 +13,7 @@ export default function PortfolioImage(props) {
     setOpen,
     index,
     setSelectedItem,
+    inViewPort,
   } = props;
 
   const handleOpenClick = () => {
@@ -27,7 +28,7 @@ export default function PortfolioImage(props) {
 
   return (
     <>
-      {open && (
+      {open && inViewPort && (
         <Button to={'#' + id} onClick={() => handleCloseClick()}>
           <span />
           <span />
@@ -110,6 +111,10 @@ const Content = styled.div`
   p {
     padding: 96px;
   }
+
+  img {
+    width: 100%;
+  }
 `;
 
 const Button = styled(HashLink)`
@@ -127,6 +132,18 @@ const Button = styled(HashLink)`
   cursor: pointer;
   opacity: ${(props) => (props.more ? '0' : '1')};
   transition: 0.2s;
+
+  @media (max-width: 1050px) {
+    ${(props) =>
+      !props.more &&
+      `
+        top: 24px;
+        right: 24px;
+        left: auto;
+        position: fixed;
+        transform: none;
+      `}
+  }
 
   span {
     border-top: 1.125em solid transparent;

@@ -112,7 +112,7 @@ const MiniImage = styled.img`
     max-width: 100px;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1050px) {
     display: none;
   }
 `;

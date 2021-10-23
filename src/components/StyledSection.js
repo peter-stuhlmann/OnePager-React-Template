@@ -9,7 +9,7 @@ const SectionStyles = styled.section`
     box-sizing: border-box;
     padding: 96px;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1050px) {
       padding: 10px;
     }
 
@@ -27,7 +27,7 @@ const SectionStyles = styled.section`
       justify-content: space-between;
       align-items: center;
 
-      @media (max-width: 900px) {
+      @media (max-width: 1050px) {
         width: 100%;
         float: none;
         position: relative;
@@ -45,7 +45,7 @@ const SectionStyles = styled.section`
       min-height: 100vh;
       margin-left: 50%;
 
-      @media (max-width: 900px) {
+      @media (max-width: 1050px) {
         width: 100%;
         margin-left: 0;
       }

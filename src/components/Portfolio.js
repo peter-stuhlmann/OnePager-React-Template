@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import StyledSection from './StyledSection';
 import SectionImage from './SectionImage';
@@ -41,11 +41,27 @@ export default function Portfolio() {
 
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [inViewPort, setInViewPort] = useState(0);
 
   const list = selectedItem !== null ? [items[selectedItem]] : items;
 
+  const ref = useRef();
+
+  useEffect(() => {
+    const onScroll = () => {
+      setInViewPort(
+        ref?.current?.offsetTop <= window.pageYOffset + 250 &&
+          ref?.current?.offsetTop + ref?.current?.offsetHeight >=
+            window.pageYOffset
+      );
+    };
+    window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [inViewPort]);
+
   return (
-    <CustomizedStyledSection id="work" open={open}>
+    <CustomizedStyledSection id="work" ref={ref} open={open}>
       <div style={{ backgroundColor: '#fff' }}>
         <div>
           <div>
@@ -75,6 +91,7 @@ export default function Portfolio() {
             setOpen={setOpen}
             index={index}
             setSelectedItem={setSelectedItem}
+            inViewPort={inViewPort}
           />
         ))}
       </div>
@@ -83,16 +100,18 @@ export default function Portfolio() {
 }
 
 const CustomizedStyledSection = styled(StyledSection)`
-  & > div {
-    &:first-child {
-      ${(props) => props.open && 'width: 30%'}
-    }
-    &:last-child {
-      ${(props) => props.open && 'width: 70%;'}
-      ${(props) => props.open && 'margin-left: 30%;'}
+  @media (min-width: 1051px) {
+    & > div {
+      &:first-child {
+        ${(props) => props.open && 'width: 30%'}
+      }
+      &:last-child {
+        ${(props) => props.open && 'width: 70%;'}
+        ${(props) => props.open && 'margin-left: 30%;'}
 
-      img {
-        width: 100%;
+        img {
+          width: 100%;
+        }
       }
     }
   }
