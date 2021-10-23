@@ -149,6 +149,13 @@ const Button = styled(HashLink)`
         position: fixed;
         transform: none;
       `}
+
+    ${(props) =>
+      props.more &&
+      `
+        opacity: 1;
+        display: block;
+      `}
   }
 
   span {
@@ -236,7 +243,7 @@ const Button = styled(HashLink)`
 
   div {
     position: absolute;
-    top: 8px;
+    top: 9.5px;
     left: 4.5px;
     font-size: 12px;
     color: #fff;
