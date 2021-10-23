@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import StyledSection from './StyledSection';
 import SectionImage from './SectionImage';
 import Navigation from './Navigation';
+import PortfolioNavigation from './PortfolioNavigation';
 import PortfolioImage from './PortfolioImage';
 import styled from 'styled-components';
 
@@ -47,10 +48,16 @@ export default function Portfolio() {
     <CustomizedStyledSection id="work" open={open}>
       <div style={{ backgroundColor: '#fff' }}>
         <div>
-          <SectionImage
-            src="https://image-placeholder.vercel.app/?w=250&h=120&text=Work"
-            alt="Placeholder"
-          />
+          <div>
+            <SectionImage
+              src="https://image-placeholder.vercel.app/?w=250&h=120&text=Work"
+              alt="Placeholder"
+            />
+            <PortfolioNavigation
+              setOpen={setOpen}
+              setSelectedItem={setSelectedItem}
+            />
+          </div>
           <Navigation color="#000" underlineColor="rgb(247, 72, 78)" />
         </div>
       </div>

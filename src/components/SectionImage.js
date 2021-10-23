@@ -11,9 +11,8 @@ export default function SectionImage(props) {
 }
 
 const StyledSectionImage = styled.div`
-  width: calc(100% - 20px);
-  height: calc(100vh - 120px);
-  margin-top: 20px;
+  height: calc(100vh - 140px);
+  margin: 20px 10px;
   display: flex;
   align-items: center;
   justify-content: center;

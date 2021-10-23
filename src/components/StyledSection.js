@@ -32,6 +32,12 @@ const SectionStyles = styled.section`
         float: none;
         position: relative;
       }
+
+      & > div > div {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
     }
 
     &:last-child {
