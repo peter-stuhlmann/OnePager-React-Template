@@ -2,11 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Navigation from './Navigation';
+import AnimatedTitle from './AnimatedTitle';
 
 export default function Intro() {
   return (
     <StyledIntro>
-      <Title>Lorem ipsum dolor sit amet</Title>
+      <Title>
+        <AnimatedTitle />
+      </Title>
       <Image
         src="https://image-placeholder.vercel.app/?w=450&h=450"
         alt="Placeholder"
@@ -32,8 +35,9 @@ const Title = styled.h1`
   font-size: 0.875em;
   margin: 0;
   text-transform: uppercase;
-  padding: 36px 15px;
+  padding: 36px 0;
   font-weight: bold;
+  position: relative;
 `;
 
 const Image = styled.img`
