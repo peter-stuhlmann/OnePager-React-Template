@@ -168,7 +168,10 @@ const Button = styled(HashLink)`
       top: 24vh;
       left: 50%;
       transform: translate(-50%, -50%);
-      animation: buttonAnimation 0.5s forwards 0.15s;
+      
+      @media (min-width: 1051px) {
+        animation: buttonAnimation 0.5s forwards 0.15s;
+      }
 
       @keyframes buttonAnimation {
         from {
