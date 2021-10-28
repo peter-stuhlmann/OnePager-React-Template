@@ -40,6 +40,7 @@ export default function Portfolio() {
   ];
 
   const [open, setOpen] = useState(false);
+  const [closed, setClosed] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [inViewPort, setInViewPort] = useState(0);
 
@@ -61,7 +62,7 @@ export default function Portfolio() {
   }, [inViewPort]);
 
   return (
-    <CustomizedStyledSection id="work" ref={ref} open={open}>
+    <CustomizedStyledSection id="work" ref={ref} open={open} closed={closed}>
       <div style={{ backgroundColor: '#fff' }}>
         <div>
           <div>
@@ -71,6 +72,7 @@ export default function Portfolio() {
             />
             <PortfolioNavigation
               setOpen={setOpen}
+              setClosed={setClosed}
               setSelectedItem={setSelectedItem}
             />
           </div>
@@ -89,6 +91,8 @@ export default function Portfolio() {
             content={item.content}
             open={open}
             setOpen={setOpen}
+            closed={closed}
+            setClosed={setClosed}
             index={index}
             setSelectedItem={setSelectedItem}
             inViewPort={inViewPort}
@@ -103,16 +107,61 @@ const CustomizedStyledSection = styled(StyledSection)`
   @media (min-width: 1051px) {
     & > div {
       &:first-child {
-        ${(props) => props.open && 'width: 30%'}
+        ${(props) =>
+          props.open && 'animation: leftSection 0.5s forwards 0.15s;'}
+        ${(props) =>
+          props.closed && 'animation: leftSectionClose 0.5s forwards;'}
       }
       &:last-child {
-        ${(props) => props.open && 'width: 70%;'}
-        ${(props) => props.open && 'margin-left: 30%;'}
+        ${(props) =>
+          props.open && 'animation: rightSection 0.5s forwards 0.15s;'}
+        ${(props) =>
+          props.closed && 'animation: rightSectionClose 0.5s forwards;'}
 
         img {
           width: 100%;
         }
       }
+    }
+  }
+
+  @keyframes leftSection {
+    from {
+      width: 50%;
+    }
+    to {
+      width: 30%;
+    }
+  }
+
+  @keyframes rightSection {
+    from {
+      width: 50%;
+      margin-left: 50%;
+    }
+    to {
+      width: 70%;
+      margin-left: 30%;
+    }
+  }
+
+  @keyframes leftSectionClose {
+    from {
+      width: 30%;
+    }
+    to {
+      width: 50%;
+    }
+  }
+
+  @keyframes rightSectionClose {
+    from {
+      width: 70%;
+      margin-left: 30%;
+    }
+    to {
+      width: 50%;
+      margin-left: 50%;
     }
   }
 `;

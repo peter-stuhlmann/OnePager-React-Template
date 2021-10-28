@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { HashLink } from 'react-router-hash-link';
 
 export default function PortfolioNavigation(props) {
-  const { setOpen, setSelectedItem } = props;
+  const { setOpen, setClosed, setSelectedItem } = props;
 
   const navItems = [
     { title: 'One', pathname: '#one' },
@@ -13,6 +13,7 @@ export default function PortfolioNavigation(props) {
 
   const handleNavItemClick = (index) => {
     setOpen(true);
+    setClosed(false);
     setSelectedItem(index);
   };
 

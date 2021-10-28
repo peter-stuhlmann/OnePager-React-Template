@@ -11,6 +11,8 @@ export default function PortfolioImage(props) {
     content,
     open,
     setOpen,
+    closed,
+    setClosed,
     index,
     setSelectedItem,
     inViewPort,
@@ -18,12 +20,17 @@ export default function PortfolioImage(props) {
 
   const handleOpenClick = () => {
     setOpen(true);
+    setClosed(false);
     setSelectedItem(index);
   };
 
   const handleCloseClick = () => {
-    setOpen(false);
-    setSelectedItem(null);
+    setClosed(true);
+
+    setTimeout(() => {
+      setOpen(false);
+      setSelectedItem(null);
+    }, 150);
   };
 
   return (
@@ -33,6 +40,7 @@ export default function PortfolioImage(props) {
           to={'#' + id}
           onClick={() => handleCloseClick()}
           inViewPort={inViewPort}
+          closed={closed}
         >
           <span />
           <span />
@@ -43,7 +51,7 @@ export default function PortfolioImage(props) {
           <i />
         </Button>
       )}
-      <StyledPortfolioImage id={id} open={open}>
+      <StyledPortfolioImage id={id} open={open} closed={closed}>
         <img src={src} alt={alt} />
         <div>
           <h3>{title && title}</h3>
@@ -61,9 +69,7 @@ export default function PortfolioImage(props) {
           )}
         </div>
       </StyledPortfolioImage>
-      {open && (
-        <Content open={open} dangerouslySetInnerHTML={{ __html: content }} />
-      )}
+      <Content open={open} dangerouslySetInnerHTML={{ __html: content }} />
     </>
   );
 }
@@ -82,11 +88,32 @@ const StyledPortfolioImage = styled.div`
   }
 
   img {
-    height: ${(props) => (props.open ? '60vh' : '100vh')};
+    ${(props) =>
+      props.open && 'animation: heightMinimize 0.5s forwards 0.15s;'};
+    ${(props) => props.closed && 'animation: heightMaximize 0.5s forwards;'};
+    height: 100vh;
     transition: 15s transform linear;
 
     &:hover {
       transform: scale(1.3);
+    }
+
+    @keyframes heightMinimize {
+      from {
+        height: 100vh;
+      }
+      to {
+        height: 60vh;
+      }
+    }
+
+    @keyframes heightMaximize {
+      from {
+        height: 60vh;
+      }
+      to {
+        height: 100vh;
+      }
     }
   }
 
@@ -110,7 +137,10 @@ const StyledPortfolioImage = styled.div`
 `;
 
 const Content = styled.div`
+  display: ${(props) => (props.open ? 'block' : 'none')};
   padding: 70px 0 50px 0;
+  opacity: 0;
+  ${(props) => props.open && 'animation: opacity 0.5s forwards 0.15s; '};
 
   p {
     padding: 96px;
@@ -119,14 +149,39 @@ const Content = styled.div`
   img {
     width: 100%;
   }
+
+  @keyframes opacity {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const Button = styled(HashLink)`
   position: ${(props) => (props.more ? 'relative' : 'absolute')};
   ${(props) =>
     !props.more &&
-    'position: absolute; top: 24vh; left: 30%; transform: translate(-50%, -50%);'};
+    ` position: absolute;
+      top: 24vh;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: buttonAnimation 0.5s forwards 0.15s;
+
+      @keyframes buttonAnimation {
+        from {
+          left: 50%;
+        }
+        to {
+          left: 30%;
+        }
+      }
+    `};
+
   display: block;
+  ${(props) => (props.closed ? 'display: none' : 'display: block')};
   width: 3.75em;
   height: 4.25em;
   margin: ${(props) => (props.more ? '20px auto' : '0 auto;')};
