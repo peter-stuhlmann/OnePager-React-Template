@@ -107,16 +107,13 @@ const CustomizedStyledSection = styled(StyledSection)`
   @media (min-width: 1051px) {
     & > div {
       &:first-child {
-        ${(props) =>
-          props.open && 'animation: leftSection 0.5s forwards 0.15s;'}
-        ${(props) =>
-          props.closed && 'animation: leftSectionClose 0.5s forwards;'}
+        ${(props) => props.open && 'animation: leftSection 2s forwards 0.15s;'}
+        ${(props) => props.closed && 'animation: leftSectionClose 2s forwards;'}
       }
       &:last-child {
+        ${(props) => props.open && 'animation: rightSection 2s forwards 0.15s;'}
         ${(props) =>
-          props.open && 'animation: rightSection 0.5s forwards 0.15s;'}
-        ${(props) =>
-          props.closed && 'animation: rightSectionClose 0.5s forwards;'}
+          props.closed && 'animation: rightSectionClose 2s forwards;'}
 
         img {
           width: 100%;

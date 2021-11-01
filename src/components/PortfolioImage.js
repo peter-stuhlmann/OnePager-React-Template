@@ -57,15 +57,19 @@ export default function PortfolioImage(props) {
           <h3>{title && title}</h3>
           <div>{description && description}</div>
           {!open && (
-            <Button more to={'#' + id} onClick={() => handleOpenClick()}>
+            <HashLink
+              className="more"
+              to={'#' + id}
+              onClick={() => handleOpenClick()}
+            >
               <span />
               <span />
               <span />
               <span />
               <span />
               <span />
-              <div>MORE</div>
-            </Button>
+              <div>More</div>
+            </HashLink>
           )}
         </div>
       </StyledPortfolioImage>
@@ -85,12 +89,88 @@ const StyledPortfolioImage = styled.div`
     a {
       opacity: 1;
     }
+
+    .more {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .more {
+    transition: 0.4s transform cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+    font-size: 16px;
+    display: block;
+    width: 3.75em;
+    height: 4.25em;
+    margin: 25px auto 0 auto;
+    transform-origin: center center;
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+    transform: scale(0.5);
+    opacity: 0;
+
+    @media (max-width: 1050px) {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    span {
+      border-top: 1.125em solid transparent;
+      border-right: none;
+      border-bottom: 1em solid transparent;
+      border-left: 1.875em solid #292929;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform-origin: left bottom;
+      border-radius: 3px 3px 0 0;
+      z-index: 100;
+
+      &:nth-child(1) {
+        transform: rotateZ(60deg) rotateY(0) rotateX(0deg);
+        transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s;
+      }
+      &:nth-child(2) {
+        transform: rotateZ(120deg) rotateY(0) rotateX(0deg);
+        transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
+      }
+      &:nth-child(3) {
+        transform: rotateZ(180deg) rotateY(0) rotateX(0deg);
+        transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+      }
+      &:nth-child(4) {
+        transform: rotateZ(240deg) rotateY(0) rotateX(0deg);
+        transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+      }
+      &:nth-child(5) {
+        transform: rotateZ(300deg) rotateY(0) rotateX(0deg);
+        transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+      }
+      &:nth-child(6) {
+        transform: rotateZ(360deg) rotateY(0) rotateX(0deg);
+        transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+      }
+    }
+
+    div {
+      transition: 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) 0s;
+      z-index: 200;
+      position: absolute;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      top: 50%;
+      left: 50%;
+      display: block;
+      transform: translate(-50%, -50%);
+      line-height: 1em;
+    }
   }
 
   img {
-    ${(props) =>
-      props.open && 'animation: heightMinimize 0.5s forwards 0.15s;'};
-    ${(props) => props.closed && 'animation: heightMaximize 0.5s forwards;'};
+    ${(props) => props.open && 'animation: heightMinimize 2s forwards 0.15s;'};
+    ${(props) => props.closed && 'animation: heightMaximize 2s forwards;'};
     height: 100vh;
     transition: 15s transform linear;
 
@@ -140,7 +220,7 @@ const Content = styled.div`
   display: ${(props) => (props.open ? 'block' : 'none')};
   padding: 70px 0 50px 0;
   opacity: 0;
-  ${(props) => props.open && 'animation: opacity 0.5s forwards 0.15s; '};
+  ${(props) => props.open && 'animation: opacity 2s forwards 0.15s; '};
 
   p {
     padding: 96px;
@@ -170,7 +250,7 @@ const Button = styled(HashLink)`
       transform: translate(-50%, -50%);
       
       @media (min-width: 1051px) {
-        animation: buttonAnimation 0.5s forwards 0.15s;
+        animation: buttonAnimation 2s forwards 0.15s;
       }
 
       @keyframes buttonAnimation {
