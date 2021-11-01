@@ -43,4 +43,18 @@ const Title = styled.h1`
 const Image = styled.img`
   max-width: calc(100vw - 20px);
   max-height: calc(100vh - 180px);
+  position: absolute;
+  top: 125%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: img-go-to-top 1.2s ease forwards 2s;
+
+  @keyframes img-go-to-top {
+    from {
+      top: 125%;
+    }
+    to {
+      top: 50%;
+    }
+  }
 `;

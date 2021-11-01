@@ -32,7 +32,8 @@ export default function AnimatedTitle() {
 const StyledTitle = styled.svg`
   height: 0.875em;
   position: absolute;
-  top: 123px;
+  z-index: 100;
+  top: 48.5vh;
   left: 0;
   right: 0;
   bottom: 0;
@@ -198,7 +199,7 @@ const StyledTitle = styled.svg`
 
   @keyframes go-to-top {
     from {
-      top: 123px;
+      top: 48.5vh;
     }
     to {
       top: 50px;
