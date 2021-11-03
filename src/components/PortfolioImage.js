@@ -14,8 +14,10 @@ export default function PortfolioImage(props) {
     closed,
     setClosed,
     index,
+    selectedItem,
     setSelectedItem,
     inViewPort,
+    list,
   } = props;
 
   const handleOpenClick = () => {
@@ -24,17 +26,25 @@ export default function PortfolioImage(props) {
     setSelectedItem(index);
   };
 
+  const handleNextClick = () => {
+    setOpen(true);
+    setClosed(false);
+    setSelectedItem(index + 1);
+  };
+
   const handleCloseClick = () => {
     setClosed(true);
 
     setTimeout(() => {
       setOpen(false);
       setSelectedItem(null);
-    }, 150);
+    }, 2250);
   };
 
+  console.log(id);
+
   return (
-    <>
+    <Item index={index} selectedItem={selectedItem}>
       {open && (
         <Button
           to={'#' + id}
@@ -74,9 +84,32 @@ export default function PortfolioImage(props) {
         </div>
       </StyledPortfolioImage>
       <Content open={open} dangerouslySetInnerHTML={{ __html: content }} />
-    </>
+      {open && index + 1 < list.length && (
+        <NextButton
+          to={'#' + list[index + 1].id}
+          onClick={() => handleNextClick()}
+        >
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <div>Next</div>
+        </NextButton>
+      )}
+    </Item>
   );
 }
+
+const Item = styled.div`
+  display: ${(props) =>
+    props.selectedItem === null
+      ? 'block'
+      : props.selectedItem === props.index
+      ? 'block'
+      : 'none'};
+`;
 
 const StyledPortfolioImage = styled.div`
   overflow: hidden;
@@ -105,7 +138,8 @@ const StyledPortfolioImage = styled.div`
     margin: 25px auto 0 auto;
     transform-origin: center center;
     color: #fff;
-    position: relative;
+    position: absolute;
+    top: 57px;
     text-decoration: none;
     transform: scale(0.5);
     opacity: 0;
@@ -385,5 +419,72 @@ const Button = styled(HashLink)`
     left: 4.5px;
     font-size: 12px;
     color: #fff;
+  }
+`;
+
+const NextButton = styled(HashLink)`
+  transition: 0.4s transform cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+  font-size: 16px;
+  display: block;
+  width: 3.75em;
+  height: 4.25em;
+  padding-bottom: 50px;
+  margin: 25px auto 0 auto;
+  transform-origin: center center;
+  color: #fff;
+  position: relative;
+  text-decoration: none;
+
+  span {
+    border-top: 1.125em solid transparent;
+    border-right: none;
+    border-bottom: 1em solid transparent;
+    border-left: 1.875em solid #292929;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform-origin: left bottom;
+    border-radius: 3px 3px 0 0;
+    z-index: 100;
+
+    &:nth-child(1) {
+      transform: rotateZ(60deg) rotateY(0) rotateX(0deg);
+      transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s;
+    }
+    &:nth-child(2) {
+      transform: rotateZ(120deg) rotateY(0) rotateX(0deg);
+      transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s;
+    }
+    &:nth-child(3) {
+      transform: rotateZ(180deg) rotateY(0) rotateX(0deg);
+      transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+    }
+    &:nth-child(4) {
+      transform: rotateZ(240deg) rotateY(0) rotateX(0deg);
+      transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+    }
+    &:nth-child(5) {
+      transform: rotateZ(300deg) rotateY(0) rotateX(0deg);
+      transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+    }
+    &:nth-child(6) {
+      transform: rotateZ(360deg) rotateY(0) rotateX(0deg);
+      transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+    }
+  }
+
+  div {
+    transition: 0.4s cubic-bezier(0.6, -0.28, 0.735, 0.045) 0s;
+    z-index: 200;
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    top: 30%;
+    left: 50%;
+    display: block;
+    transform: translate(-50%, -50%);
+    line-height: 1em;
+    color: #fff !important;
   }
 `;

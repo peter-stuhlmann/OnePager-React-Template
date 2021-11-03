@@ -44,8 +44,6 @@ export default function Portfolio() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [inViewPort, setInViewPort] = useState(0);
 
-  const list = selectedItem !== null ? [items[selectedItem]] : items;
-
   const ref = useRef();
 
   useEffect(() => {
@@ -80,7 +78,7 @@ export default function Portfolio() {
         </div>
       </div>
       <div style={{ padding: 0 }}>
-        {list.map((item, index) => (
+        {items.map((item, index) => (
           <PortfolioImage
             key={item.title}
             id={item.id}
@@ -94,8 +92,10 @@ export default function Portfolio() {
             closed={closed}
             setClosed={setClosed}
             index={index}
+            selectedItem={selectedItem}
             setSelectedItem={setSelectedItem}
             inViewPort={inViewPort}
+            list={items}
           />
         ))}
       </div>
